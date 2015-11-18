@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../assets/fonts/Comfortaa.ttf');
+}
+
+@font-face {
+    font-family: 'AlegreyaSans';
+    src: url('../assets/fonts/AlegreyaSans.ttf');
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Comfortaa", Helvetica, Arial, sans-serif;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}

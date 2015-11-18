@@ -1,0 +1,29 @@
+{
+  "name": "personalpage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "angri": "^1.0.3",
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "express-session": "^1.12.1",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.2.3",
+    "nodemailer": "^1.8.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Vannilaknight:sonic365@bitbucket.org/Vannilaknight/personsite.git"
+  },
+  "author": "Taylor BOyd",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Vannilaknight/personsite#readme"
+}

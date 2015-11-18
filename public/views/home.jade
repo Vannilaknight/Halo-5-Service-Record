@@ -1,0 +1,8 @@
+.row.limit
+    .col-lg-12
+        h2.page-header Gallery
+    .col-lg-2.col-sm-3.col-xs-4(ng-repeat='i in getNumber(number) track by $index')
+        a(href='/{{$index+1}}')
+            img.thumbnail.img-responsive(src='https://92afd7d12618bdacf2a48927549dafa95b17ef54.googledrive.com/host/0B9Dq1C8xkwicdnd4VnBhYjBaYjA/image%20({{$index+1}}).jpeg', alt='')
+
+
