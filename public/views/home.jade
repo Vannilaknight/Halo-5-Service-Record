@@ -1,8 +1,46 @@
-.row.limit
-    .col-lg-12
-        h2.page-header Gallery
-    .col-lg-2.col-sm-3.col-xs-4(ng-repeat='i in getNumber(number) track by $index')
-        a(href='/{{$index+1}}')
-            img.thumbnail.img-responsive(src='https://92afd7d12618bdacf2a48927549dafa95b17ef54.googledrive.com/host/0B9Dq1C8xkwicdnd4VnBhYjBaYjA/image%20({{$index+1}}).jpeg', alt='')
-
-
+label.label.label-danger(ng-show='hasError') Player Not Found
+.input-group.input-group-lg(ng-class='getErrorClass(hasError)')
+    input#searchField.form-control(type='text', placeholder='Find Players', ng-model='gamertagInput', name='searchField', onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()")
+    span.input-group-btn
+        button#searchButton.btn.btn-default(ng-click='search(gamertagInput)')
+            i.fa.fa-search
+div.col-md-12(ng-show='hasResult')
+    div.row
+        h2.col-md-5 {{gamertag}}
+        h2.text-primary.col-md-3 Rank {{rank}}
+        h2.text-info.col-md-4 XP: {{XP}}
+    div.row
+        img.thumbnail.col-md-3(src='{{spartanImage}}')
+        .col-md-9
+            .table-responsive
+                table.table.table-striped.table-bordered
+                    thead
+                        tr
+                            th
+                                h5.text-info Playlist Name
+                            th
+                                h5.text-info Playlist Ranking
+                            th
+                                h5.text-info Total Time Played
+                    tbody
+                        tr(ng-repeat="stat in playlistStats")
+                            td
+                                h6 {{stat.playlist}}
+                            td
+                                h6 {{stat.rank}}
+                            td
+                                h6 {{stat.timePlayed}}
+    div.row
+        #wl.col-md-4
+            h3 Win/Loss Ratio
+                small#wlPercent  {{wl}}
+            #winlossBox
+                canvas#winloss(height='200', width='200')
+        .col-md-4
+            h3 K/D/A
+                small#kdPercent  {{kd}}
+            #kdaBox
+                canvas#kda(height='200', width='200')
+    div.row
+        h2.text-info.jumbotron Most Used Weapon:
+            small.text-primary   {{favoriteWeapon}}

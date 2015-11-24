@@ -1,8 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
-    session = require('express-session'),
-    logger = require('angri');
+    session = require('express-session');
 
 module.exports = function(app, config) {
     app.set('views', 'server/views');
@@ -12,7 +11,7 @@ module.exports = function(app, config) {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(session({
         secret: 'Im wearing ladies underwear',
-        name: 'RealTeam6',
+        name: 'HALO5SERVICERECORD',
         resave: true,
         saveUninitialized: true
     }));
