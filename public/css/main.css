@@ -56,6 +56,11 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Comfortaa", Helvetica, Arial, sans-serif;
 }
 
+.thumbnail {
+   background-color: transparent;
+    border: none;
+}
+
 .vertical-center {
     min-height: 80%; /* Fallback for vh unit */
     min-height: 80vh;
