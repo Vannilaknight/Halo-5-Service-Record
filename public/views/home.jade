@@ -1,7 +1,7 @@
-div.col-md-12.vertical-center
+div.col-xs-12.col-md-12.vertical-center
     div.row
-        img.img-responsive.col-md-12(src='/assets/H5SR.png')
-        div.col-md-12
+        img.img-responsive.col-xs-12.col-md-12(src='/assets/H5SR.png')
+        div.col-xs-12.col-md-12
             label.label.label-danger(ng-show='hasError') Player Not Found
             .input-group.input-group-lg(ng-class='getSearchClass()')
                 input#searchField.form-control(type='text', placeholder='Find Players', ng-model='gamertagInput', name='searchField', onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()")
