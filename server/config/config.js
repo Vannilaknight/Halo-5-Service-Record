@@ -4,10 +4,12 @@ var rootPath = path.normalize(__dirname + '/../../');
 module.exports = {
     development: {
         rootPath: rootPath,
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        host: "localhost"
     },
     production: {
         rootPath: rootPath,
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        host: "h5servicerecord.com"
     }
 };

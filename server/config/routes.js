@@ -1,8 +1,10 @@
 var HaloAPI = require("haloapi");
 
-var api = new HaloAPI('fa7882da90374c968afb65cfd645377a');
+module.exports = function (app, config) {
 
-module.exports = function (app) {
+    var api = new HaloAPI({
+        apiKey: 'fa7882da90374c968afb65cfd645377a'
+    });
 
     app.use(function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
@@ -21,7 +23,6 @@ module.exports = function (app) {
     });
 
     app.get('/profile/:gamerTag', function (req, res) {
-        //api.metadata.csrDesignations().then(console.log);
 
         api.profile.spartanImage(req.params.gamerTag).then(function (data) {
             res.send(data);
@@ -29,19 +30,19 @@ module.exports = function (app) {
     });
 
     app.get('/playlist/:playlistId', function (req, res) {
-        api.metadata.playlists().then(function(playlists){
-            for(var x = 0; x < playlists.length; x++){
-                if(playlists[x].id == req.params.playlistId){
+        api.metadata.playlists().then(function (playlists) {
+            for (var x = 0; x < playlists.length; x++) {
+                if (playlists[x].id == req.params.playlistId) {
                     res.send(playlists[x].name);
                 }
             }
         });
     });
 
-    app.get('/weapon/:weaponId', function(req, res){
-        api.metadata.weapons().then(function(data){
-            data.forEach(function(weapon, index, arr){
-                if(req.params.weaponId == weapon.id){
+    app.get('/weapon/:weaponId', function (req, res) {
+        api.metadata.weapons().then(function (data) {
+            data.forEach(function (weapon, index, arr) {
+                if (req.params.weaponId == weapon.id) {
                     res.send(weapon);
                 }
             });

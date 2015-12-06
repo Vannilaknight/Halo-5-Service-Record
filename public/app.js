@@ -14,13 +14,9 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
     $routeProvider
-        .when('/about', {
-            templateUrl: 'partials/views/about',
-            controller: 'aboutCtrl'
-        })
-        .when('/:imageId', {
-            templateUrl: 'partials/views/image',
-            controller: 'imageCtrl'
+        .when('/:gamertag', {
+            templateUrl: 'partials/views/serviceRecord',
+            controller: 'serviceRecordCtrl'
         })
         .when('/', {
             templateUrl: 'partials/views/home',
