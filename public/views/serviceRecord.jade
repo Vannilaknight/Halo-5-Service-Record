@@ -7,15 +7,15 @@ div.col-xs-12.col-md-12
                 i.fa.fa-search
 div.col-xs-12.col-md-12
     div.row
-        h3.col-xs-4.col-md-4 {{gamertag}}
-        h3.text-primary.col-xs-2.col-md-2 Rank {{rank}}
-        h3.text-info.col-xs-3.col-md-3 XP: {{XP}}
-        h6.text-warning.col-xs-3.col-md-3 Total Playtime: {{totalPlaytime}}
+        h3.col-xs-12.col-md-4 {{gamertag}}
+        h3.text-primary.col-xs-6.col-md-2 Rank {{rank}}
+        h3.text-info.col-xs-6.col-md-3 XP: {{XP}}
+        h6.text-warning.col-xs-12.col-md-3 Total Playtime: {{totalPlaytime}}
     div.row
-        img.thumbnail.col-xs-3.col-md-3(src='{{spartanImage}}')
-        .col-xs-9.col-md-9
+        img.thumbnail.col-xs-12.col-md-3(src='{{spartanImage}}')
+        .col-xs-12.col-md-9
             .table-responsive
-                table.table.table-striped.table-bordered
+                table.table.table-bordered.table-condensed
                     thead
                         tr
                             th
@@ -33,17 +33,17 @@ div.col-xs-12.col-md-12
                             td
                                 h6 {{stat.timePlayed}}
     div.row
-        #wl.col-xs-4.col-md-4
+        #wl.col-xs-12.col-md-4
             h3 Win/Loss Ratio
                 small#wlPercent  {{wl}}
             #winlossBox
                 canvas#winloss(height='200', width='200')
-        .col-xs-4.col-md-4
+        .col-xs-12.col-md-4
             h3 K/D/A
                 small#kdPercent  {{kd}}
             #kdaBox
                 canvas#kda(height='200', width='200')
-        .col-xs-4.col-md-4
+        .col-xs-12.col-md-4
             h3 Kills
                 small#kdPercent  {{totalKills}}
             #killsBox

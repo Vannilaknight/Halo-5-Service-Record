@@ -115,8 +115,10 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $
         $scope.totalDeaths = serviceRecord.ArenaStats.TotalDeaths;
         $scope.kd = ($scope.totalKills / $scope.totalDeaths).toFixed(2);
         $scope.assasinations = serviceRecord.ArenaStats.TotalAssassinations;
-        $scope.grenadeKills = serviceRecord.ArenaStats.TotalGrenadeKills;;
-        $scope.groundPoundKills = serviceRecord.ArenaStats.TotalGroundPoundKills;;
+        $scope.grenadeKills = serviceRecord.ArenaStats.TotalGrenadeKills;
+        ;
+        $scope.groundPoundKills = serviceRecord.ArenaStats.TotalGroundPoundKills;
+        ;
         $scope.spartanKills = serviceRecord.ArenaStats.TotalSpartanKills;
         $scope.meleeKills = serviceRecord.ArenaStats.TotalMeleeKills;
         getMostUsedWeapon(serviceRecord.ArenaStats.WeaponWithMostKills.WeaponId.StockId);
@@ -366,7 +368,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $
 
         iterated++;
 
-        if(iterated != allTimes.length){
+        if (iterated != allTimes.length) {
             return addtime(total, allTimes[iterated]);
         } else {
             return hours + 'h ' + minutes + 'm ' + seconds + 's';
@@ -374,7 +376,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $
 
     }
 
-    $scope.searchPlayer = function(gamertag){
+    $scope.searchPlayer = function (gamertag) {
         $location.path("/" + gamertag);
     };
 
