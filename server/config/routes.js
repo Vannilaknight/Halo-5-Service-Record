@@ -1,4 +1,5 @@
 var HaloAPI = require("haloapi");
+var weapons = require('./weapons.json');
 
 module.exports = function (app, config) {
 
@@ -17,15 +18,20 @@ module.exports = function (app, config) {
     });
 
     app.get('/serviceRecord/:gamerTag', function (req, res) {
-        api.stats.serviceRecordArena(req.params.gamerTag).then(function (data) {
-            res.send(data);
-        });
+        api.stats.serviceRecordArena(req.params.gamerTag)
+            .then(function (data) {
+                res.send(data);
+            }).catch(function (error) {
+                res.send(error);
+            });
+
     });
 
     app.get('/profile/:gamerTag', function (req, res) {
-
         api.profile.spartanImage(req.params.gamerTag).then(function (data) {
             res.send(data);
+        }).catch(function (error) {
+            res.send(error)
         });
     });
 
@@ -39,14 +45,8 @@ module.exports = function (app, config) {
         });
     });
 
-    app.get('/weapon/:weaponId', function (req, res) {
-        api.metadata.weapons().then(function (data) {
-            data.forEach(function (weapon, index, arr) {
-                if (req.params.weaponId == weapon.id) {
-                    res.send(weapon);
-                }
-            });
-        });
+    app.get('/weapons', function (req, res) {
+        res.send(weapons);
     });
 
     app.get('*', function (req, res) {

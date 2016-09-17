@@ -1,77 +1,247 @@
-div.col-xs-12.col-md-12
-    label.label.label-danger(ng-show='hasError') Player Not Found
-    .input-group.input-group-lg(ng-class='getSearchClass()')
-        input#searchField.form-control(type='text', placeholder='Find Players', ng-model='gamertagInput', name='searchField', onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()")
-        span.input-group-btn
-            button#searchButton.btn.btn-default(ng-click='searchPlayer(gamertagInput)')
-                i.fa.fa-search
-div.col-xs-12.col-md-12
-    div.row
-        h3.col-xs-12.col-md-4 {{gamertag}}
-        h3.text-primary.col-xs-6.col-md-2 Rank {{rank}}
-        h3.text-info.col-xs-6.col-md-3 XP: {{XP}}
-        h6.text-warning.col-xs-12.col-md-3 Total Playtime: {{totalPlaytime}}
-    div.row
-        img.thumbnail.col-xs-12.col-md-3(src='{{spartanImage}}')
-        .col-xs-12.col-md-9
-            .table-responsive
-                table.table.table-bordered.table-condensed
-                    thead
-                        tr
-                            th
-                                h5.text-info Playlist Name
-                            th
-                                h5.text-info Playlist Ranking
-                            th
-                                h5.text-info Total Time Played
-                    tbody
-                        tr(ng-repeat="stat in playlistStats")
-                            td
-                                h6 {{stat.playlist}}
-                            td
-                                h6 {{stat.rank}}
-                            td
-                                h6 {{stat.timePlayed}}
-    div.row
-        #wl.col-xs-12.col-md-4
-            h3 Win/Loss Ratio
-                small#wlPercent  {{wl}}
-            #winlossBox
-                canvas#winloss(height='200', width='200')
-        .col-xs-12.col-md-4
-            h3 K/D/A
-                small#kdPercent  {{kd}}
-            #kdaBox
-                canvas#kda(height='200', width='200')
-        .col-xs-12.col-md-4
-            h3 Kills
-                small#kdPercent  {{totalKills}}
-            #killsBox
-                canvas#kills(height='200', width='200')
-    div.row
-        .col-xs-6.col-md-6
-            h2.text-info.text-center Most Used Weapon
-            h2.text-primary.text-center {{favoriteWeapon}}
-        .col-xs-6.col-md-6
-            h2.text-info.text-center Total Assasinations
-            h2.text-primary.text-center {{assasinations}}
-footer.footer.col-xs-12.col-md-12
-    .container
-        h4.text-center
-            small &copy; Taylor Boyd; Using the
-                a(href='https://www.halowaypoint.com/en-us/developers')  Halo 5 Api
-                |  All Rights Reserved
-script.
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-71022368-1', 'auto');
-    ga('send', 'pageview');
+.container.body
+    .main_container
+        .col-md-3.left_col
+            .left_col.scroll-view
+                .navbar.nav_title(style='border: 0;')
+                    a.site_title(href='/')
+                        span Service Record
+                .clearfix
+                .profile
+                    .profile_pic
+                        img.img-circle.profile_img(src='{{serviceRecord.spartanImage}}', alt='...')
+                    .profile_info
+                        span Welcome,
+                        h2 {{serviceRecord.gamertag}}
+                br
+                #sidebar-menu.main_menu_side.main_menu
+                    .menu_section
+                        h3 Rank: {{serviceRecord.spartanRank}}
+                        ul.nav.side-menu
+                            li
+                                a
+                                    i.fa.fa-home
+                                    |  Arena
+                                    span.label.label-success.pull-right Beta
+                            li
+                                a
+                                    i.fa.fa-home
+                                    |  Warzone
+                                    span.label.label-warning.pull-right Coming Soon
+                .sidebar-footer.hidden-small
+                    a(data-toggle='tooltip', data-placement='top', title='Settings')
+                        span.glyphicon.glyphicon-cog(aria-hidden='true')
+                    a(data-toggle='tooltip', data-placement='top', title='FullScreen')
+                        span.glyphicon.glyphicon-fullscreen(aria-hidden='true')
+                    a(data-toggle='tooltip', data-placement='top', title='Lock')
+                        span.glyphicon.glyphicon-eye-close(aria-hidden='true')
+                    a(data-toggle='tooltip', data-placement='top', title='Logout')
+                        span.glyphicon.glyphicon-off(aria-hidden='true')
+        .top_nav
+            .nav_menu
+                nav
+                    form(ng-submit="searchPlayer(gamertag)").navbar-form
+                        .form-group
+                            input.form-control(type='text', placeholder='Gamertag', ng-model="gamertag")
+                        .btn-group
+                            button.btn.btn-default(type='submit') Submit
+        // /top navigation
+        .right_col(role='main')
+            .row.tile_count
+                .col-md-2.col-sm-4.col-xs-6.tile_stats_count
+                    span.count_top
+                        i.fa.fa-user
+                        |  Total Kills
+                    .count {{serviceRecord.totalKills}}
+                    span.count_bottom
+                        i.red {{serviceRecord.totalDeaths}}
+                        |  Deaths
+                .col-md-2.col-sm-4.col-xs-6.tile_stats_count
+                    span.count_top
+                        i.fa.fa-clock-o
+                        |  Fastest Game Win
+                    .count_sm {{serviceRecord.fastestGameWin}}
+                .col-md-2.col-sm-4.col-xs-6.tile_stats_count
+                    span.count_top
+                        i.fa.fa-user
+                        |  Most Used Weapon
+                    .count_sm {{serviceRecord.favoriteWeapon.name}}
+                    span.count_bottom
+                        i.green {{serviceRecord.favoriteWeapon.kills}}
+                        |  Kills with Weapon
+                .col-md-2.col-sm-4.col-xs-6.tile_stats_count
+                    span.count_top
+                        i.fa.fa-user
+                        |  Total Assassinations
+                    .count {{serviceRecord.totalAssassinations}}
+                    span.count_bottom
+                        i.green {{serviceRecord.percentOfAssassinations}}%
+                        |  of Total Kills
+                .col-md-2.col-sm-4.col-xs-6.tile_stats_count
+                    span.count_top
+                        i.fa.fa-user
+                        |  Total Game Wins
+                    .count {{serviceRecord.totalWins}}
+                    span.count_bottom
+                        i.red {{serviceRecord.totalLosses}}
+                        |  Losses
+                .col-md-2.col-sm-4.col-xs-6.tile_stats_count
+                    span.count_top
+                        i.fa.fa-user
+                        |  Total XP
+                    .count {{serviceRecord.totalXP}}
+            // /top tiles
+            .row
+                .col-md-12.col-sm-12.col-xs-12
+                    .dashboard_graph
+                        .row.x_title
+                            .col-md-6
+                                h3
+                                    | Arena ranks
+                                    small  Coming Soon
+                        .clearfix
+            br
+            .row
+                .col-md-4.col-sm-4.col-xs-12
+                    .x_panel.tile.fixed_height_320
+                        .x_title
+                            h2 Coming Soon
+                            ul.nav.navbar-right.panel_toolbox
+                                li
+                                    a.collapse-link
+                                        i.fa.fa-chevron-up
+                                li.dropdown
+                                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                                        i.fa.fa-wrench
+                                    ul.dropdown-menu(role='menu')
+                                        li
+                                            a(href='#') Settings 1
+                                        li
+                                            a(href='#') Settings 2
+                                li
+                                    a.close-link
+                                        i.fa.fa-close
+                            .clearfix
+                        .x_content
+                .col-md-4.col-sm-4.col-xs-12
+                    .x_panel.tile.fixed_height_320.overflow_hidden
+                        .x_title
+                            h2 Coming Soon
+                            ul.nav.navbar-right.panel_toolbox
+                                li
+                                    a.collapse-link
+                                        i.fa.fa-chevron-up
+                                li.dropdown
+                                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                                        i.fa.fa-wrench
+                                    ul.dropdown-menu(role='menu')
+                                        li
+                                            a(href='#') Settings 1
+                                        li
+                                            a(href='#') Settings 2
+                                li
+                                    a.close-link
+                                        i.fa.fa-close
+                            .clearfix
+                .col-md-4.col-sm-4.col-xs-12
+                    .x_panel.tile.fixed_height_320
+                        .x_title
+                            h2 More Coming Soon
+                            ul.nav.navbar-right.panel_toolbox
+                                li
+                                    a.collapse-link
+                                        i.fa.fa-chevron-up
+                                li.dropdown
+                                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                                        i.fa.fa-wrench
+                                    ul.dropdown-menu(role='menu')
+                                        li
+                                            a(href='#') Settings 1
+                                        li
+                                            a(href='#') Settings 2
+                                li
+                                    a.close-link
+                                        i.fa.fa-close
+                            .clearfix
+        footer
+            .pull-right
+                | H5 Service Reecord - By Taylor Boyd
+            .clearfix
+
+
+//div.col-xs-12.col-md-12
+//    label.label.label-danger(ng-show='hasError') Player Not Found
+//    .input-group.input-group-lg(ng-class='getSearchClass()')
+//        input#searchField.form-control(type='text', placeholder='Find Players', ng-model='gamertagInput', name='searchField', onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()")
+//        span.input-group-btn
+//            button#searchButton.btn.btn-default(ng-click='searchPlayer(gamertagInput)')
+//                i.fa.fa-search
+//div.col-xs-12.col-md-12
+//    div.row
+//        h3.col-xs-12.col-md-4 {{gamertag}}
+//        h3.text-primary.col-xs-6.col-md-2 Rank {{rank}}
+//        h3.text-info.col-xs-6.col-md-3 XP: {{XP}}
+//        h6.text-warning.col-xs-12.col-md-3 Total Playtime: {{totalPlaytime}}
+//    div.row
+//        img.thumbnail.col-xs-12.col-md-3(src='{{spartanImage}}')
+//        .col-xs-12.col-md-9
+//            .table-responsive
+//                table.table.table-bordered.table-condensed
+//                    thead
+//                        tr
+//                            th
+//                                h5.text-info Playlist Name
+//                            th
+//                                h5.text-info Playlist Ranking
+//                            th
+//                                h5.text-info Total Time Played
+//                    tbody
+//                        tr(ng-repeat="stat in playlistStats")
+//                            td
+//                                h6 {{stat.playlist}}
+//                            td
+//                                h6 {{stat.rank}}
+//                            td
+//                                h6 {{stat.timePlayed}}
+//    div.row
+//        #wl.col-xs-12.col-md-4
+//            h3 Win/Loss Ratio
+//                small#wlPercent  {{wl}}
+//            #winlossBox
+//                canvas#winloss(height='200', width='200')
+//        .col-xs-12.col-md-4
+//            h3 K/D/A
+//                small#kdPercent  {{kd}}
+//            #kdaBox
+//                canvas#kda(height='200', width='200')
+//        .col-xs-12.col-md-4
+//            h3 Kills
+//                small#kdPercent  {{totalKills}}
+//            #killsBox
+//                canvas#kills(height='200', width='200')
+//    div.row
+//        .col-xs-6.col-md-6
+//            h2.text-info.text-center Most Used Weapon
+//            h2.text-primary.text-center {{favoriteWeapon}}
+//        .col-xs-6.col-md-6
+//            h2.text-info.text-center Total Assasinations
+//            h2.text-primary.text-center {{assasinations}}
+//footer.footer.col-xs-12.col-md-12
+//    .container
+//        h4.text-center
+//            small &copy; Taylor Boyd; Using the
+//                a(href='https://www.halowaypoint.com/en-us/developers')  Halo 5 Api
+//                |  All Rights Reserved
+//script.
+//    (function (i, s, o, g, r, a, m) {
+//        i['GoogleAnalyticsObject'] = r;
+//        i[r] = i[r] || function () {
+//                    (i[r].q = i[r].q || []).push(arguments)
+//                }, i[r].l = 1 * new Date();
+//        a = s.createElement(o),
+//                m = s.getElementsByTagName(o)[0];
+//        a.async = 1;
+//        a.src = g;
+//        m.parentNode.insertBefore(a, m)
+//    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+//    ga('create', 'UA-71022368-1', 'auto');
+//    ga('send', 'pageview');

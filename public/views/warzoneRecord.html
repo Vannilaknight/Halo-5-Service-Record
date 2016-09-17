@@ -1,0 +1,13 @@
+<div class="col-xs-12 col-md-12"><label ng-show="hasError" class="label label-danger">Player Not Found</label><div ng-class="getSearchClass()" class="input-group input-group-lg"><input id="searchField" type="text" placeholder="Find Players" ng-model="gamertagInput" name="searchField" onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()" class="form-control"/><span class="input-group-btn"><button id="searchButton" ng-click="searchPlayer(gamertagInput)" class="btn btn-default"><i class="fa fa-search"></i></button></span></div></div><div class="col-xs-12 col-md-12"><div class="row"><h3 class="col-xs-12 col-md-4">{{gamertag}}</h3><h3 class="text-primary col-xs-6 col-md-2">Rank {{rank}}</h3><h3 class="text-info col-xs-6 col-md-3">XP: {{XP}}</h3><h6 class="text-warning col-xs-12 col-md-3">Total Playtime: {{totalPlaytime}}</h6></div><div class="row"><img src="{{spartanImage}}" class="thumbnail col-xs-12 col-md-3"/></div><div class="row"><div id="wl" class="col-xs-12 col-md-4"><h3>Win/Loss Ratio<small id="wlPercent"> {{wl}}</small></h3><div id="winlossBox"><canvas id="winloss" height="200" width="200"></canvas></div></div><div class="col-xs-12 col-md-4"><h3>K/D/A<small id="kdPercent"> {{kd}}</small></h3><div id="kdaBox"><canvas id="kda" height="200" width="200"></canvas></div></div><div class="col-xs-12 col-md-4"><h3>Kills<small id="kdPercent"> {{totalKills}}</small></h3><div id="killsBox"><canvas id="kills" height="200" width="200"></canvas></div></div></div><div class="row"><div class="col-xs-6 col-md-6"><h2 class="text-info text-center">Most Used Weapon</h2><h2 class="text-primary text-center">{{favoriteWeapon}}</h2></div><div class="col-xs-6 col-md-6"><h2 class="text-info text-center">Total Assasinations</h2><h2 class="text-primary text-center">{{assasinations}}</h2></div></div></div><footer class="footer col-xs-12 col-md-12"><div class="container"><h4 class="text-center"><small>&copy; Taylor Boyd; Using the<a href="https://www.halowaypoint.com/en-us/developers"> Halo 5 Api</a> All Rights Reserved</small></h4></div></footer><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-71022368-1', 'auto');
+ga('send', 'pageview');</script>
