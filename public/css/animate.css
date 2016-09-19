@@ -1,18 +1,12 @@
 @charset "UTF-8";
 
-/*!
-Animate.css - http://daneden.me/animate
-Licensed under the MIT license - http://opensource.org/licenses/MIT
-
-Copyright (c) 2015 Daniel Eden
-*/
-
 .ng-enter {
-    animation: fadeInUpBig 1s ease-in-out;
+    animation: fadeIn .5s;
 }
 
 .ng-leave {
-    animation: fadeOutUpBig 1s ease-in-out;
+    animation: fadeOutUp .5s;
+    position: fixed;
 }
 
 .animated {

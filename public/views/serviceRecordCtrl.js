@@ -1,5 +1,7 @@
-angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $routeParams, $location, $q) {
+angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootScope, $http, $routeParams, $location, $q) {
     var weapons;
+    var playlists;
+    var csrs;
     $scope.getSearchClass = function () {
         if ($scope.hasError) {
             return 'has-error';
@@ -13,7 +15,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $
     };
 
     function mapServiceRecord(serviceRecord, image) {
-        console.log(serviceRecord);
+        //console.log(serviceRecord);
         var stats = serviceRecord.ArenaStats;
         var newObject = {
             gamertag: serviceRecord.PlayerId.Gamertag,
@@ -26,19 +28,59 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $
             totalAssassinations: stats.TotalAssassinations,
             fastestGameWin: haloTimetoDateTime(stats.FastestMatchWin),
             totalWins: stats.TotalGamesWon,
-            totalLosses: stats.TotalGamesLost
+            totalLosses: stats.TotalGamesLost,
+            arenaStats: []
         };
 
         newObject.percentOfAssassinations = (newObject.totalAssassinations / newObject.totalKills).toFixed(2);
 
-        weapons.forEach(function (weapon) {
+        playlists.forEach(function(playlist){
+            stats.ArenaPlaylistStats.forEach(function(PlaylistStat){
+                if(playlist.id == PlaylistStat.PlaylistId){
+                    newObject.arenaStats.push({
+                        playlist: PlaylistStat,
+                        playlistName: playlist.name
+                    })
+                }
+            });
+        });
 
+        weapons.forEach(function (weapon) {
             if (weapon.id == stats.WeaponWithMostKills.WeaponId.StockId) {
                 newObject.favoriteWeapon = weapon;
                 newObject.favoriteWeapon.kills = stats.WeaponWithMostKills.TotalKills;
                 console.log(weapon)
             }
         });
+
+        newObject.arenaStats.forEach(function(arenaStat){
+            var playlist = arenaStat.playlist;
+
+            playlist.TotalTimePlayed = haloTimetoDateTime(playlist.TotalTimePlayed);
+
+            csrs.forEach(function(csr){
+                if(playlist.Csr) {
+                    if (csr.id == playlist.Csr.DesignationId) {
+                        csr.tiers.forEach(function (tier) {
+                            if (tier.id == playlist.Csr.Tier) {
+                                playlist.Csr.image = tier.iconImageUrl;
+                            }
+                        })
+                    }
+                } else {
+                    if(csr.id == 0){
+                        csr.tiers.forEach(function (tier) {
+                            if (tier.id == playlist.MeasurementMatchesLeft) {
+                                playlist.Csr = {};
+                                playlist.Csr.image = tier.iconImageUrl;
+                            }
+                        })
+                    }
+                }
+            });
+        });
+
+        console.log(newObject.arenaStats);
         return newObject
     }
 
@@ -85,18 +127,18 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $http, $
         var getRecord = $http({method: 'GET', url: '/serviceRecord/' + gamertag});
         var getImage = $http({method: 'GET', url: '/profile/' + gamertag});
         var getWeapons = $http({method: 'GET', url: '/weapons'});
-        $q.all([getRecord, getImage, getWeapons]).then(function (data) {
+        var getPlaylists = $http({method: 'GET', url: '/playlists'});
+        var getCsrs = $http({method: 'GET', url: '/csr'});
+        $q.all([getRecord, getImage, getWeapons, getPlaylists, getCsrs]).then(function (data) {
             if(data[0].data.Result.PlayerId.Gamertag) {
                 weapons = data[2].data;
-                $scope.serviceRecord = mapServiceRecord(data[0].data.Result, data[1].data)
+                playlists = data[3].data;
+                csrs = data[4].data;
+                $rootScope.serviceRecord = mapServiceRecord(data[0].data.Result, data[1].data)
             } else {
                 $location.path('/')
             }
         })
-    };
-
-    $scope.searchPlayer = function (gamertag) {
-        $location.path("/" + gamertag);
     };
 
     $scope.search($routeParams.gamertag);

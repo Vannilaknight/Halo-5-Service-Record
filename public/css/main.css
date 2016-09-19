@@ -137,3 +137,91 @@ h1, h2, h3, h4, h5, h6 {
 .table {
     background-color: transparent;
 }
+
+.stat_card{
+    height: auto;
+    min-height: 100px;
+    border: 1px solid red;
+
+}
+
+.count {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.count_sm {
+    font-weight: bold;
+}
+
+.table-wrap {
+    margin: 0 auto;
+}
+
+.table {
+    border: 1px solid SlateGray;
+}
+
+@-moz-document url-prefix() {
+    fieldset {
+        display: table-cell;
+    }
+}
+
+td, th {
+    border: 0px !important;
+    vertical-align: middle !important;
+}
+
+tr {
+    font-size: 1.2em;
+}
+
+tr:nth-child(odd) {
+    background: WhiteSmoke;
+}
+
+thead tr {
+    background: white;
+    border: 1px solid SlateGray;
+}
+
+tfoot tr {
+    background: white;
+    border: 1px solid SlateGray;
+}
+
+tr td:nth-child(1) {
+    padding-left: 1em !important;
+}
+tr td:nth-child(2) {
+    padding-left: 0em !important;
+}
+tr td:nth-child(3) {
+    text-align: right;
+    width: 60%;
+    padding-right: 1em !important;
+}
+tr th:nth-child(1) {
+    padding-left: 1em !important;
+}
+tr th:nth-child(2) {
+    padding-left: 0em !important;
+}
+tr th:nth-child(3) {
+    text-align: right;
+    width: 20%;
+    padding-right: 1.5em !important;
+}
+
+.circle {
+    width: 45px !important;
+    height: 45px !important;
+    background: DimGray;
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 100%;
+}
+

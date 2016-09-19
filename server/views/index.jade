@@ -1,4 +1,36 @@
 extends ../includes/layout
 block main-content
     div(ng-controller="mainCtrl")
-            div.page-view(ng-view)
+        .container-fluid
+            .row
+                .col-sm-3.col-lg-2
+                    nav.navbar.navbar-default.navbar-fixed-side
+                        .container
+                            .navbar-header
+                                button.navbar-toggle(data-target='.navbar-collapse', data-toggle='collapse')
+                                    span.sr-only Toggle navigation
+                                    span.icon-bar
+                                    span.icon-bar
+                                    span.icon-bar
+                                form(ng-submit="searchPlayer(gamertag)")
+                                    .form-group
+                                        input.form-control(placeholder='Gamertag', ng-model="gamertag")
+                            .collapse.navbar-collapse
+                                ul.nav.navbar-nav
+                                    li.dropdown
+                                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                                            | Service Record
+                                            b.caret
+                                        ul.dropdown-menu
+                                            li
+                                                a(href='#') Arena
+                                            li
+                                                a(href='#') Warzone
+                                            li.divider
+                                            li.dropdown-header Special
+                                            li
+                                                a(href='#') Game History
+
+                .col-sm-9.col-lg-10
+                    div.page-view(ng-view)
+

@@ -1,5 +1,7 @@
 var HaloAPI = require("haloapi");
 var weapons = require('./weapons.json');
+var playlists = require('./playlists.json');
+var csr = require('./csr.json');
 
 module.exports = function (app, config) {
 
@@ -35,14 +37,12 @@ module.exports = function (app, config) {
         });
     });
 
-    app.get('/playlist/:playlistId', function (req, res) {
-        api.metadata.playlists().then(function (playlists) {
-            for (var x = 0; x < playlists.length; x++) {
-                if (playlists[x].id == req.params.playlistId) {
-                    res.send(playlists[x].name);
-                }
-            }
-        });
+    app.get('/csr', function(req, res) {
+        res.send(csr);
+    });
+
+    app.get('/playlists', function (req, res) {
+        res.send(playlists);
     });
 
     app.get('/weapons', function (req, res) {
