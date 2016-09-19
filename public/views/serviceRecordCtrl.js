@@ -136,7 +136,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootSco
                 csrs = data[4].data;
                 $rootScope.serviceRecord = mapServiceRecord(data[0].data.Result, data[1].data)
             } else {
-                $location.path('/')
+                $location.path('/pnf')
             }
         })
     };

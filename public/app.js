@@ -14,6 +14,10 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
     $routeProvider
+        .when('/pnf', {
+            templateUrl: 'partials/views/pnf',
+            controller: 'homeCtrl'
+        })
         .when('/:gamertag', {
             templateUrl: 'partials/views/serviceRecord',
             controller: 'serviceRecordCtrl'
