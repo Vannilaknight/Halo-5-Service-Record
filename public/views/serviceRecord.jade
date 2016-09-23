@@ -1,5 +1,11 @@
 .container-fluid
     .row
+        .col-md-2
+            img.img.img-responsive(src="{{serviceRecord.spartanImage}}")
+        .col-md-10
+            h1 {{serviceRecord.gamertag}}
+            h2 Rank: {{serviceRecord.spartanRank}}
+    .row
         .col-md-2.col-sm-4.col-xs-6.stat_card
             span.count_top
                 i.fa.fa-user

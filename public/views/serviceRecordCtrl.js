@@ -15,7 +15,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootSco
     };
 
     function mapServiceRecord(serviceRecord, image) {
-        //console.log(serviceRecord);
+        console.log(serviceRecord);
         var stats = serviceRecord.ArenaStats;
         var newObject = {
             gamertag: serviceRecord.PlayerId.Gamertag,
@@ -49,7 +49,6 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootSco
             if (weapon.id == stats.WeaponWithMostKills.WeaponId.StockId) {
                 newObject.favoriteWeapon = weapon;
                 newObject.favoriteWeapon.kills = stats.WeaponWithMostKills.TotalKills;
-                console.log(weapon)
             }
         });
 
@@ -80,7 +79,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootSco
             });
         });
 
-        console.log(newObject.arenaStats);
+        console.log(newObject);
         return newObject
     }
 
