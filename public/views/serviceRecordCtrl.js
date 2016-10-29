@@ -2,6 +2,8 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootSco
     var weapons;
     var playlists;
     var csrs;
+
+    $scope.loading = true;
     $scope.getSearchClass = function () {
         if ($scope.hasError) {
             return 'has-error';
@@ -129,6 +131,7 @@ angular.module('app').controller('serviceRecordCtrl', function ($scope, $rootSco
         var getPlaylists = $http({method: 'GET', url: '/playlists'});
         var getCsrs = $http({method: 'GET', url: '/csr'});
         $q.all([getRecord, getImage, getWeapons, getPlaylists, getCsrs]).then(function (data) {
+            $scope.loading = false;
             if(data[0].data.Result.PlayerId.Gamertag) {
                 weapons = data[2].data;
                 playlists = data[3].data;

@@ -1,0 +1,285 @@
+@keyframes clockwise {
+    to {
+        transform: rotate(360deg) translatez(0);
+    }
+}
+@keyframes counter-clockwise {
+    to {
+        transform: rotate(-360deg) translatez(0);
+    }
+}
+@keyframes bounce {
+    50% {
+        transform: translatey(-20px);
+    }
+    100% {
+        transform: translatey(20px);
+    }
+}
+@keyframes zoom {
+    to {
+        width: calc(250px + 20px);
+        margin-left: calc(-125px - 10px);
+        margin-top: calc(-125px - 10px);
+        border-width: 10px;
+        border-color: white;
+    }
+}
+@keyframes follow {
+    0% {
+        transform: translatex(-45px);
+    }
+    100% {
+        transform: translatex(60px);
+    }
+}
+.magic {
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    box-shadow: 12px -12px 0 rgba(255, 255, 255, 0.125), 17px 0 0 -1px rgba(255, 255, 255, 0.25), 12px 12px 0 -2px rgba(255, 255, 255, 0.375), 0 17px 0 -3px rgba(255, 255, 255, 0.5), -12px 12px 0 -4px rgba(255, 255, 255, 0.625), -17px 0 0 -5px rgba(255, 255, 255, 0.75), -12px -12px 0 -6px rgba(255, 255, 255, 0.875), 0 -17px 0 -7px white;
+    animation: clockwise 0.75s steps(8, end) infinite;
+}
+
+.spin {
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    box-shadow: 12px -12px rgba(255, 255, 255, 0.125), 17px 0 rgba(255, 255, 255, 0.25), 12px 12px rgba(255, 255, 255, 0.375), 0 17px rgba(255, 255, 255, 0.5), -12px 12px rgba(255, 255, 255, 0.625), -17px 0 rgba(255, 255, 255, 0.75), -12px -12px rgba(255, 255, 255, 0.875), 0 -17px white;
+    animation: clockwise 0.75s steps(8, end) infinite;
+}
+
+.one {
+    height: 50px;
+    width: 50px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.5);
+    border-radius: 100%;
+    animation: clockwise 0.35s linear infinite;
+}
+
+.multi {
+    height: 50px;
+    width: 50px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.25) transparent rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+    animation: clockwise 1.01s linear infinite;
+}
+
+.multi:after {
+    position: absolute;
+    display: block;
+    top: 5px;
+    right: 5px;
+    height: 30px;
+    width: 30px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.5) transparent transparent;
+    border-radius: 100%;
+}
+
+.multi div {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.25) transparent rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+    animation: counter-clockwise 0.49s linear infinite;
+}
+
+.multi div:after {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.25);
+    border-radius: 100%;
+}
+
+/* This preloader will eventually use an SVG conical gradient; conical gradients will be available in SVG2. For now, we must use an image. */
+.conical {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+FJREFUeNq8md1u2zAMhSlZ64BiF3uYPcbeH3uGAQW2mxVtY3EOJhccw58jO5sB1q7tOPx8SEpiCjN/pz9bGSaPC3C+APfXOz7LPN+2Pzz+YXGBxP+kzlubfkZ2v+UMgfcX4zw1BWA5wpRvRcDMbjMKuS+iGc7PKPG/tzC0CICZfbtnnDuUN81xGg2rYuQKClSc+46El5nsFKjjOa6vMZDsUfJnheEGrk2+dUS9ksCUQJVIgUgtCASpVggACnQoX9rJxGan/LJTkosDcRYmBWE1Onv5wSeSHbGagL6DsJOs8lxXMOyM7MUZ7RE1Moip8hvFuISRx6wcR6qWB1EBCHNA7JOJqgEkiIbhbGpxQImSTVGi8NJf0NWeA+dncqQ6+2w2bOYIB4MTKQV3GKuaMQBQlRV1XI6ElgRgQPYuYKQaPYDJQqcCaliqUJbsnDwkG19YVS1rwVUDZVIAL7SsMmo9jA0lvLeuN8vxZUINq5S/hxY5N0Vhxo6jVlEgI4ktiApCuCAlGcC8sGDDSDmuIRdhDQirbGl8E1qUzIssRYp46/vb1U53FVISYjHCaiak/gLpwSQQmaXqcaWLz0q4Or7vah8ECKIEBS/aHBCzxU+k1O7QOmx/Qfty+ur0w2YfB8ji5AUlCpgVsxkDGrIGzyZ+V8fehu3b42afhBoViX3UpwzkHtvTZl/+dXulJdOJaInLwcRxD6+XzX5u9nWzb+P4RVzX1Y6B76NMkezDHOy72F8dvGz2utnzZj/GfZ/H/nlcu4hcYlUkIjDTTx1aDEBY1gXEOnLj+uZ/jT2NJH8UFexNFYYePD/zrSAgHIB0ZZdhO8j+5nf1H4bjO8x+v36OB+JCtSRGZyBW4djrgLkIxxcxhuiJ5HoChmWOMJDAGkLmhAR5E0CrcnoxvpPEDGFVgywSamwle6ZED9RYhfOrSmQ591rE1EVeWwWQnP91QBm2qhYn1gOQ1UlgUqP/ohz0lr/d6AFYy2puSR5wosjqgHTD0WLAcNJbLkmIsVW1ZiEsNSy1kEWVt6bpKEwDACIQz/kedB/1woqT2QUULc0IAcv5SJGelM6sgxINfBaI2bVpk0rwJISVIyVYZWYgXh+NGphMHgQD9R5tXlenD5A1A6EcQdSYgZmF8FRxZ78zMOh1tF1aVXvpSIv2bopkhv4eUoOmeXdatDcLK6Ra8YTj9/qhx1OkewurngChMAQmO01AWE1zGWK9AWEVHXMwBqFqEAChAW5mDDMjO0+oQUCLKVOFZjosSI4cgaEktJA8iUCqlSPoYHgU6GiiaxDtfJkFOZMLR367t34FyFqm9FuAAQC4HVFM/WGI7QAAAABJRU5ErkJggg==");
+    background-position: 50%;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    -webkit-mask: radial-gradient(circle closest-side, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 84%, #000000 86%, #000000 100%) no-repeat 50% border;
+    animation: clockwise 0.75s ease-in-out infinite;
+}
+
+.bounce div {
+    border-radius: 100%;
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    animation: bounce 1s ease-in-out infinite;
+    position: absolute;
+    top: 0;
+    transform: translatey(20px);
+}
+
+.bounce div:first-of-type {
+    left: -20px;
+    animation-delay: 0.20s;
+}
+
+.bounce div:nth-of-type(2) {
+    animation-delay: 0.10s;
+}
+
+.bounce div:last-of-type {
+    left: 20px;
+}
+
+.ios {
+    width: 0;
+    height: 0;
+    animation: clockwise 1s steps(8, end) infinite;
+}
+
+.ios div {
+    width: 6px;
+    height: 40px;
+    margin-top: calc(-40px/2);
+    margin-left: calc(-6px/2);
+    position: absolute;
+}
+
+.ios div:before,
+.ios div:after {
+    background-color: rgba(255, 255, 255, 0.2);
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+}
+
+.ios div:before {
+    border-radius: 6px 6px 0 0;
+    top: 0;
+}
+
+.ios div:after {
+    border-radius: 0 0 6px 6px;
+    bottom: 0;
+}
+
+.ios div:nth-of-type(1):after {
+    background-color: rgba(255, 255, 255, 0.625);
+}
+
+.ios div:nth-of-type(2) {
+    transform: rotate(45deg) translatez(0);
+}
+
+.ios div:nth-of-type(2):after {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.ios div:nth-of-type(3) {
+    transform: rotate(90deg) translatez(0);
+}
+
+.ios div:nth-of-type(3):after {
+    background-color: rgba(255, 255, 255, 0.875);
+}
+
+.ios div:nth-of-type(4) {
+    transform: rotate(135deg) translatez(0);
+}
+
+.ios div:nth-of-type(4):after {
+    background-color: white;
+}
+
+.two {
+    height: 50px;
+    width: 50px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.75) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.25);
+    border-radius: 100%;
+    animation: clockwise .5s linear infinite;
+}
+
+.portal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.portal > div {
+    position: relative;
+    width: 0;
+    height: 0;
+    align-self: center;
+}
+
+.portal > div > div {
+    position: absolute;
+    width: 0;
+    align-self: center;
+    border-width: 0;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    animation: zoom 1s ease-in infinite;
+}
+
+.portal > div > div:after {
+    display: block;
+    padding-top: 100%;
+}
+
+.portal > div > div:nth-of-type(2) {
+    animation-delay: 0.33s;
+}
+
+.portal > div > div:nth-of-type(3) {
+    animation-delay: 0.67s;
+}
+
+.follow {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.follow div {
+    align-self: center;
+    width: 10px;
+    height: 20px;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: -15px 0 0 rgba(0, 0, 0, 0.3), -30px 0 0 rgba(0, 0, 0, 0.3), 15px 0 0 rgba(0, 0, 0, 0.3), 30px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+.follow div > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -15px 0 0 white, 15px 0 0 white;
+    animation: follow 1s steps(7, end) infinite;
+}
+
+.spinner{
+    position: fixed;
+    top: 40%;
+    left: 55%;
+}

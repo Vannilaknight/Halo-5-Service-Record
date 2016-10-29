@@ -1,85 +1,88 @@
 .container-fluid
-    .row
-        .col-md-2
-            img.img.img-responsive(src="{{serviceRecord.spartanImage}}")
-        .col-md-10
-            h1 {{serviceRecord.gamertag}}
-            h2 Rank: {{serviceRecord.spartanRank}}
-    .row
-        .col-md-2.col-sm-4.col-xs-6.stat_card
-            span.count_top
-                i.fa.fa-user
-                |  Total Kills
-            .count {{serviceRecord.totalKills}}
-            span.count_bottom
-                i.text-danger {{serviceRecord.totalDeaths}}
-                |  Deaths
-        .col-md-2.col-sm-4.col-xs-6.stat_card
-            span.count_top
-                i.fa.fa-clock-o
-                |  Fastest Game Win
-            .count_sm {{serviceRecord.fastestGameWin}}
-            span.count_bottom so fast
-        .col-md-2.col-sm-4.col-xs-6.stat_card
-            span.count_top
-                i.fa.fa-user
-                |  Most Used Weapon
-            .count_sm {{serviceRecord.favoriteWeapon.name}}
-            span.count_bottom
-                i.green {{serviceRecord.favoriteWeapon.kills}}
-                |  Kills with Weapon
-        .col-md-2.col-sm-4.col-xs-6.stat_card
-            span.count_top
-                i.fa.fa-user
-                |  Total Assassinations
-            .count {{serviceRecord.totalAssassinations}}
-            span.count_bottom
-                i.green {{serviceRecord.percentOfAssassinations}}%
-                |  of Total Kills
-        .col-md-2.col-sm-4.col-xs-6.stat_card
-            span.count_top
-                i.fa.fa-user
-                |  Total Game Wins
-            .count {{serviceRecord.totalWins}}
-            span.count_bottom
-                i.red {{serviceRecord.totalLosses}}
-                |  Losses
-        .col-md-2.col-sm-4.col-xs-6.stat_card
-            span.count_top
-                i.fa.fa-user
-                |  Total XP
-            .count {{serviceRecord.totalXP}}
-            span.count_bottom Wow thats alot
-    // /top tiles
-    .row
-        .col-md-12.col-sm-12.col-xs-12
-            .dashboard_graph
-                .row.x_title
-                    .col-md-12
-                        h3
-                            | Arena ranks
-                            small  Coming Soon
-                        .table-wrap
-                            .table-responsive
-                                table.table
-                                    thead
-                                        tr
-                                            th RANK
-                                            th(colspan='2') PLAYLIST
-                                            th TIME PLAYED
-                                    tfoot
-                                        tr
-                                            th RANK
-                                            th(colspan='2') PLAYLIST
-                                            th TIME PLAYED
-                                    tbody
-                                        tr(ng-repeat="playlist in serviceRecord.arenaStats")
-                                            td
-                                                img.circle(src='{{playlist.playlist.Csr.image}}')
-                                            td(colspan='2') {{playlist.playlistName}}
-                                            td {{playlist.playlist.TotalTimePlayed}}
+    .spinner(ng-show='loading')
+        .multi
+    div(ng-show='!loading')
+        .row
+            .col-md-2
+                img.img.img-responsive.img-thumbnail(src="{{serviceRecord.spartanImage}}")
+            .col-md-10
+                h1 {{serviceRecord.gamertag}}
+                h2 Rank: {{serviceRecord.spartanRank}}
+        .row
+            .col-md-2.col-sm-4.col-xs-6.stat_card
+                span.count_top
+                    i.fa.fa-user
+                    |  Total Kills
+                .count {{serviceRecord.totalKills}}
+                span.count_bottom
+                    i.text-danger {{serviceRecord.totalDeaths}}
+                    |  Deaths
+            .col-md-2.col-sm-4.col-xs-6.stat_card
+                span.count_top
+                    i.fa.fa-clock-o
+                    |  Fastest Game Win
+                .count_sm {{serviceRecord.fastestGameWin}}
+                span.count_bottom so fast
+            .col-md-2.col-sm-4.col-xs-6.stat_card
+                span.count_top
+                    i.fa.fa-user
+                    |  Most Used Weapon
+                .count_sm {{serviceRecord.favoriteWeapon.name}}
+                span.count_bottom
+                    i.green {{serviceRecord.favoriteWeapon.kills}}
+                    |  Kills with Weapon
+            .col-md-2.col-sm-4.col-xs-6.stat_card
+                span.count_top
+                    i.fa.fa-user
+                    |  Total Assassinations
+                .count {{serviceRecord.totalAssassinations}}
+                span.count_bottom
+                    i.green {{serviceRecord.percentOfAssassinations}}%
+                    |  of Total Kills
+            .col-md-2.col-sm-4.col-xs-6.stat_card
+                span.count_top
+                    i.fa.fa-user
+                    |  Total Game Wins
+                .count {{serviceRecord.totalWins}}
+                span.count_bottom
+                    i.red {{serviceRecord.totalLosses}}
+                    |  Losses
+            .col-md-2.col-sm-4.col-xs-6.stat_card
+                span.count_top
+                    i.fa.fa-user
+                    |  Total XP
+                .count {{serviceRecord.totalXP}}
+                span.count_bottom Wow thats alot
+        // /top tiles
+        .row
+            .col-md-12.col-sm-12.col-xs-12
+                .dashboard_graph
+                    .row.x_title
+                        .col-md-12
+                            h3
+                                | Arena ranks
+                                small  Coming Soon
+                            .table-wrap
+                                .table-responsive
+                                    table.table
+                                        thead
+                                            tr
+                                                th RANK
+                                                th(colspan='2') PLAYLIST
+                                                th TIME PLAYED
+                                        tfoot
+                                            tr
+                                                th RANK
+                                                th(colspan='2') PLAYLIST
+                                                th TIME PLAYED
+                                        tbody
+                                            tr(ng-repeat="playlist in serviceRecord.arenaStats")
+                                                td
+                                                    img.circle(src='{{playlist.playlist.Csr.image}}')
+                                                td(colspan='2') {{playlist.playlistName}}
+                                                td {{playlist.playlist.TotalTimePlayed}}
 
-                .clearfix
+                    .clearfix
 footer
     .pull-right
         | H5 Service Reecord - By Taylor Boyd
